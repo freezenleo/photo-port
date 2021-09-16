@@ -28,9 +28,6 @@ function ContactForm() {
             }
         }
 
-
-        console.log('errorMessage', errorMessage);
-
         if (!errorMessage) {
             setFormState({ ...formState, [e.target.name]: e.target.value });
         }
@@ -45,26 +42,26 @@ function ContactForm() {
 
     return (
         <section>
-            <h1>Contact me</h1>
+            <h1 data-testid="h1tag">Contact me</h1>
             <form id="contact-form" onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
-                    <input type="text" onChange={handleChange} name="name" defaultValue={name} />
+                    <input type="text" onBlur={handleChange} name="name" defaultValue={name} />
                 </div>
                 <div>
                     <label htmlFor="email">Email Address:</label>
-                    <input type="text" onChange={handleChange} name="email" defaultValue={email} />
+                    <input type="text" onBlur={handleChange} name="email" defaultValue={email} />
                 </div>
                 <div>
                     <label htmlFor="message">Message:</label>
-                    <textarea name="message" onChange={handleChange} rows="5" defaultValue={message} />
+                    <textarea name="message" onBlur={handleChange} rows="5" defaultValue={message} />
                     {errorMessage && (
                         <div>
                             <p className="error-text">{errorMessage}</p>
                         </div>
                     )}
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" data-testid="button">Submit</button>
             </form>
         </section>
     )
