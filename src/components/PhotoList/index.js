@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import Modal from '../Modal';
+import Modal from '../Modal';
 
 function PhotoList({ category }) {
     const [photos] = useState([
@@ -102,8 +102,23 @@ function PhotoList({ category }) {
 
     const currentPhotos = photos.filter((photo) => photo.category === category);
     console.log('current', category);
+
+    //set state for current photo for modal
+    const [currentPhoto, setCurrentPhoto] = useState();
+
+    //set state for modal open or close
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const toggleModal = (image, i) => {
+        //current photo
+        setCurrentPhoto({ ...image, index: 1 });
+        setIsModalOpen(true);
+    }
+
     return (
         <div>
+            {isModalOpen && <Modal currentPhoto={currentPhoto} />}
+
             {/* <img
                 src={photo}
                 alt="Commercial Example"
@@ -114,6 +129,7 @@ function PhotoList({ category }) {
                         src={require(`../../assets/small/${category}/${i}.jpg`).default}
                         alt={image.name}
                         className="img-thumbnail mx-1"
+                        onClick={() => toggleModal(image, i)}
                         key={image.name}
                     />
                 ))}
