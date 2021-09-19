@@ -111,10 +111,16 @@ function PhotoList({ category }) {
 
     const toggleModal = (image, i) => {
         //current photo
-        setCurrentPhoto({ ...image, index: 1 });
-        setIsModalOpen(!isModalOpen);
-        console.log('!isModalOpen', !isModalOpen);
-        console.log('!isMod', isModalOpen);
+        setCurrentPhoto({ ...image, index: i });
+        // setIsModalOpen(!isModalOpen);
+        // console.log('!isModalOpen', !isModalOpen);
+        // console.log('isMod', isModalOpen);
+        if (isModalOpen) {
+            setIsModalOpen(false)
+        }
+        else {
+            setIsModalOpen(true)
+        }
     }
 
     return (
